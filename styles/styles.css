@@ -1,0 +1,327 @@
+* {
+  margin: 0; 
+  padding: 0;
+  color: rgba(30,30,30,1); 
+}
+/* HERO AND NAV MENU */ 
+body {
+  background-color: rgb(240, 246, 250);
+}
+
+.hero {
+  position: relative; 
+  height: 100vh; 
+  width: 100%; 
+  background: linear-gradient(to top, rgba(0,0,0,.3), rgba(0,0,0,.9)), url('../images/people.jpg');
+  background-size: cover;
+  background-position: center;
+  /* border: 1px solid black;  */
+}
+  
+.hero-center {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%,-50%);
+}
+
+.hero h1 {
+  top: 35%; 
+  transform: translate(-50%,-50%);
+  font-size: 1.7rem; 
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: #fefefe; 
+}
+
+.hero-btn {
+  position: relative;
+  top: 45%;   
+  color: #fefefe; 
+  display: block; 
+  padding: 7px 10px; 
+  text-transform: uppercase;
+  background-color:rgb(149, 149, 255);
+  border-radius: 5px;
+  text-align: center;
+  line-height: 50px; 
+  outline: none; 
+  border: none; 
+  transform: translate(-50%,-50%);
+  transition: top .3s ease, background-color .3s ease; 
+  width: 180px; 
+  font-size: 1.1rem; 
+  text-decoration: none;
+}
+
+.hero-btn:hover {
+  top: 45.5%; 
+  background: rgba(149, 149, 255, .7); 
+}
+
+.container {
+  position: absolute; 
+  font-family: Helvetica, Arial, sans-serif;
+  width: 100%;
+  min-height: 100%;   
+  background-color: rgb(240, 246, 250);
+  color: rgba(30,30,30,1);
+}
+
+.menu {
+   height: 50px; 
+   padding: 10px; 
+   text-align: right; 
+   background-color: #fff;
+   /* border: 2px solid black;  */
+   box-shadow: 0 3px 10px -3px rgba(0,0,0,0.1);
+}
+
+.menu.index-menu {
+  background-color: transparent;
+}
+
+.menu.index-menu a {
+  color: #fff;
+  border-bottom: 1px solid transparent; 
+  transition: border-bottom 1s; 
+}
+
+.menu.index-menu a:hover {
+  border-bottom: 1px solid white; 
+}
+
+.menu ul {
+  list-style: none; 
+  margin-right: 130px; 
+}
+
+.menu li {
+  display: inline-block; 
+  margin-left: 30px; 
+}
+
+.menu li a {
+  font-size: 1.08rem; 
+  letter-spacing: .05rem;
+  color: rgba(60,60,60,1);
+  display: inline-block; 
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent; 
+  transition: border-bottom 1s; 
+}
+
+  .menu li a:hover {
+    border-bottom: 1px solid black; 
+  }
+
+.logo {
+
+}
+/* END OF MENU */ 
+
+/* CHECKER BODY */
+.checked_answers {
+  /* border: 1px solid blue;  */
+  position: relative; 
+  padding: 0 0 0 100px; 
+  font-size: 1.1rem; 
+  margin-bottom: 40px; 
+  margin-top: 40px; 
+}
+
+  .checked_answers p {
+    margin-bottom: 5px; 
+  }
+
+.box {
+    /* border: 1px solid blue;  */
+    position: relative; 
+    padding: 0 0 0 100px; 
+    font-size: 1.1rem; 
+    margin-bottom: 40px; 
+    margin-top: 40px; 
+}
+  
+  .box p {
+      margin-bottom: 5px; 
+  }
+
+  .single_answer {
+    margin-bottom: 20px; 
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block; 
+    width: 200px; 
+    min-width: 200px;  
+    padding: 20px; 
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
+  }
+    .correct {
+      color: green; 
+    }
+    .incorrect {
+      color: red; 
+    }
+
+.test_summary {
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2); 
+  background-color: rgb(127, 127, 248);
+  border-radius: 5px; 
+  padding: 20px; 
+  display: inline-block;  
+}
+  .test_summary p {
+    margin-top: 5px; 
+    color: #fff; 
+  }
+/* END OF CHECKER BODY */
+/* BUTTONS */ 
+
+.button {
+  font-size: 1rem; 
+  display: inline-block; 
+  min-width: 100px; 
+  line-height: 30px; 
+  border-radius: 5px; 
+  padding: 5px 7px; 
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20px; 
+}
+
+.link-button {
+  background-color: rgb(152, 248, 152);
+  transition: background-color .3s ease;
+}
+.link-button:hover {
+  background-color: rgb(217, 255, 217);
+}
+.form-button {
+  outline: none; 
+  border: none; 
+  background-color: rgb(149, 149, 255);
+  transition: background-color .3s ease;
+}
+.form-button:hover {
+  background-color: rgb(209, 209, 250);
+}
+
+/* FORM */ 
+
+.form {
+  display: inline-block; 
+  min-width: 450px; 
+  background-color: white;
+  border-radius: 5px; 
+  padding: 20px; 
+}
+
+.form-control {
+  margin-top: 10px; 
+}
+
+.form-control input {
+  display: block; 
+}
+
+/* NEW EXERCISE */ 
+
+.instructions {
+  padding: 20px; 
+  font-size: .97rem; 
+}
+
+.instructions {
+  margin-top: 5px; 
+}
+
+/* SINGLE QUESTION */ 
+
+.single-question {
+  margin-top: 20px; 
+}
+
+.result-tab {
+  display: inline-block; 
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2); 
+  background-color: rgb(127, 127, 248);
+  border-radius: 5px; 
+  padding: 20px; 
+}
+
+/* QUESTION LIST */ 
+
+.question-item {
+  /* padding: 5px;  */
+  /* border: 1px solid blue;  */
+  margin: 10px; 
+  background-color: white; 
+  border-radius: 5px; 
+  padding: 10px; 
+
+  display: flex; 
+  align-items: center;
+}
+
+.question-item input[type="checkbox"] {
+  margin-right: 15px; 
+}
+
+.fa-trash-alt {
+  color: red; 
+  font-size: 18px; 
+  margin: 0 30px 0 12px;  
+  cursor: pointer;   
+}
+
+.fa-edit {
+  color: green; 
+  font-size: 18px;
+  margin: 0 12px 0 12px;
+  cursor: pointer; 
+}
+
+/* SESSION */ 
+
+.session_message {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  background-color: rgba(87, 253, 87, .5);
+  height: 40px; 
+  padding: 7px; 
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* Test new form */  
+.question-edit input[type="checkbox"] {
+  margin-right: 20px; 
+}
+
+.new-test-form {
+  margin: 20px; 
+}
+
+/* Test to complete by students */ 
+.separate_question {
+  margin: 20px 10px; 
+}
+
+.question_input {
+  margin-top: 7px; 
+}
+
+.form-box {
+  margin: 40px; 
+}
+
+/* Test result page */ 
+
+.score {
+  font-size: 1.5rem; 
+  padding: 15px; 
+}
