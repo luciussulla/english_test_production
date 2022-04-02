@@ -53,16 +53,6 @@
     public function escape_value($string) {
       return mysqli_real_escape_string($this->connection, $string); 
     } 
-    
-    public function escape_and_trim($request_params, $object_instance) {
-      variable_dump($request_params); 
-      // get the class variables 
-      // make sure the param values correspond with the attributes if so.. trim them and escape the values 
-      // return a cleaned params_object
-      
-    }
-
-
 
     public function affected_rows() {
       return mysqli_affected_rows($this->connection); 
@@ -70,6 +60,26 @@
 
     public function insert_id() {
       return mysqli_insert_id($this->connection); 
+    }
+    // INSTANTIATION AND INSTANCE OBJECTS
+
+    public function has_attribute($attribute) {
+      $class = get_class($this);
+      return in_array($attribute, $class::$attributes);
+    } 
+
+    public function sanitized_attributes($request_params) {
+      $obj_attributes = array();
+      foreach($request_params as $attr=>$value) {
+        if($this->has_attribute($attr)) {
+          $obj_attributes[$attr] = $value;
+        }
+      }
+      return $obj_attributes; 
+    }
+
+    public function create($request_params) {
+      return $this->sanitized_attributes($request_params); 
     }
   }
 

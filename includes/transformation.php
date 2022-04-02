@@ -2,28 +2,42 @@
 
   class Transformation extends Question {
     protected static $table_name = "transformations";
+    //protected static $attributes = ["id", "question", "question_start", "question_end", "answer", "parts_of_sentence"]; 
      
     // attributes
     public $id; 
     public $question; 
     public $answer; 
     public $parts_of_sentence; 
+    public static $attributes = ["id", "question", "answer"];
 
     // find_all - inherited 
+
     public function new_transformation($request_params) {
-      global $database; 
-      $transformation    = new Transformation(); 
-      $question_start    = trim($request_params["question_start"]); 
-      $question_end      = trim($request_params["question_end"]); 
-
-      $question = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-      $answer   = trim($request_params["answer"]); 
-
-      $transformation->question = $database->escape_value($question); 
-      $transformation->answer   = $database->escape_value($answer);
-
-      return $transformation; 
+      // pass the req params to the inherited create function 
+      // accept instance as response 
+      $this->create($request_params, $this); 
+      // lets make the create function NOT save it automatically - that will be done by the save function
+      // create just returns the sanitized instance 
+      // enrich the sanitized instance in custom values that also need saving 
     }
+
+    // public function new_transformation($request_params) {
+    //   global $database; 
+    //   // modify the $req_params to include answer and question and only then pass it on for initialization and sanitization 
+    //   // 
+    //   $transformation    = new Transformation(); 
+    //   $question_start    = trim($request_params["question_start"]); 
+    //   $question_end      = trim($request_params["question_end"]); 
+    //   $answer            = trim($request_params["answer"]); 
+
+    //   $question = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+   
+    //   $transformation->question = $database->escape_value($question); 
+    //   $transformation->answer   = $database->escape_value($answer);
+
+    //   return $transformation; 
+    // }
 
     private static function parse_question_into_fragments($question) {
       $parts_of_transformation = preg_split("/__/", $question); 
@@ -37,6 +51,8 @@
 
     public static function find_transformation_by_id($id) {
       global $database; 
+
+      // need to be modified for initialization
       $id = $database->escape_value($id); 
 
       $result = parent::find_by_id($id); 
@@ -49,26 +65,25 @@
       return $transformation; 
     }
 
-    public function create(){   
-      // this function is called on the instance returned by new_transformation function
-      // that's why we can use the $this->question and answer syntax
-      global $database;    
-      $question = $this->question; 
-      $answer   = $this->answer;   
+    // public function create(){   
+    //   global $database;
+         
+    //   $question = $this->question; 
+    //   $answer   = $this->answer;   
 
-      $sql =  "INSERT INTO ".static::$table_name." ("; 
-      $sql .= "question, answer";
-      $sql .= ") VALUES ("; 
-      $sql .= "'{$question}', '{$answer}'"; 
-      $sql .= ")"; 
+    //   $sql =  "INSERT INTO ".static::$table_name." ("; 
+    //   $sql .= "question, answer";
+    //   $sql .= ") VALUES ("; 
+    //   $sql .= "'{$question}', '{$answer}'"; 
+    //   $sql .= ")"; 
       
-      if($database->query($sql)) {
-        $this->id = $database->insert_id(); 
-        return true; 
-      } else {
-        return false; 
-      }
-    }  
+    //   if($database->query($sql)) {
+    //     $this->id = $database->insert_id(); 
+    //     return true; 
+    //   } else {
+    //     return false; 
+    //   }
+    // }  
 
     private function split_question($question_assoc) {
       // question extracted from db goes here

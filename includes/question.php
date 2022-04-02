@@ -11,10 +11,10 @@ class Question extends DatabaseObject {
     return $object;
   }
 
-  public function has_attribute($attribute) {
-    $obj_vars = get_object_vars($this); 
-    return array_key_exists($attribute, $obj_vars) ? true : false; 
-  }
+  // public function has_attribute($attribute) {
+  //   $obj_vars = get_object_vars($this); 
+  //   return array_key_exists($attribute, $obj_vars) ? true : false; 
+  // }
 
   public static function find_related_questions($exercise, $from_save_function=false) {
     global $database; 
