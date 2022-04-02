@@ -8,18 +8,25 @@
     public $id; 
     public $question; 
     public $answer; 
-    public $parts_of_sentence; 
     public static $attributes = ["id", "question", "answer"];
 
     // find_all - inherited 
 
     public function new_transformation($request_params) {
+      global $database; 
       // pass the req params to the inherited create function 
       // accept instance as response 
-      $this->create($request_params, $this); 
-      // lets make the create function NOT save it automatically - that will be done by the save function
-      // create just returns the sanitized instance 
-      // enrich the sanitized instance in custom values that also need saving 
+      $this->create($request_params); 
+      $question_start    = trim($request_params["question_start"]); 
+      $question_end      = trim($request_params["question_end"]); 
+      $question = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+      $this->question = $database->escape_value($question);
+      dump_variable($this);
+       // if($transformation->save()) {
+      //   echo "transformation was saved"; 
+      // } else {
+      //   echo "transformation was not saved"; 
+      // }
     }
 
     // public function new_transformation($request_params) {

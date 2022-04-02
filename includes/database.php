@@ -69,18 +69,28 @@
     } 
 
     public function sanitized_attributes($request_params) {
+      global $database;
       $obj_attributes = array();
       foreach($request_params as $attr=>$value) {
         if($this->has_attribute($attr)) {
-          $obj_attributes[$attr] = $value;
+          $obj_attributes[$attr] = trim($database->escape_value($value)); 
         }
       }
       return $obj_attributes; 
     }
 
     public function create($request_params) {
-      return $this->sanitized_attributes($request_params); 
+      // we save in object instance an assoc array of legitimate attr ans their values;
+      foreach($this->sanitized_attributes($request_params) as $attr => $prop) {
+        $this->$attr = $prop;
+      }
     }
+
+    public function save() {
+      // we need to have - static::attributes 
+      // we need also array of value properties than can be joined into a string => array_keys
+    }
+    
   }
 
   $database = new MySQLDatabase(); 
