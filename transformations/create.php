@@ -11,9 +11,9 @@
   if(isset($_POST["submit"])) { // for POST request 
 
     $transformation = new Transformation();
-    $new_transformation = $transformation->new_transformation($_POST); 
-
-    // dump_variable($new_transformation); 
+    $new_transformation = $transformation->new($_POST); 
+    // $new_transformation->save(); 
+    dump_variable($new_transformation); 
     // if($new_transformation && $new_transformation->create()) {
     //   // Transformation saved
     //   // If we reload page the form will be resubmitted - we do not want this... so...

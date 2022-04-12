@@ -67,7 +67,7 @@
       $class = get_class($this);
       return in_array($attribute, $class::$attributes);
     } 
-
+    
     public function sanitized_attributes($request_params) {
       global $database;
       $obj_attributes = array();
@@ -79,18 +79,23 @@
       return $obj_attributes; 
     }
 
-    public function create($request_params) {
-      // we save in object instance an assoc array of legitimate attr ans their values;
-      foreach($this->sanitized_attributes($request_params) as $attr => $prop) {
-        $this->$attr = $prop;
-      }
-    }
-
+    // public function create($request_params) {
+    //   // we save in object instance an assoc array of legitimate attr ans their values;
+    //   foreach($this->sanitized_attributes($request_params) as $attr => $prop) {
+    //     $this->$attr = $prop;
+    //   }
+    //   return $this;
+    // }
+    
     public function save() {
       // we need to have - static::attributes 
-      // we need also array of value properties than can be joined into a string => array_keys
+      $db_field_names = join(", ", static::$attributes);
+      // get the values from this for keys from static::attributes
+      foreach($this as $attr=>$value) {
+        dump_variable($value); 
+      }
+      // we need also array of value properties that can be joined into a string => array_keys
     }
-    
   }
 
   $database = new MySQLDatabase(); 

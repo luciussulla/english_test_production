@@ -2,8 +2,9 @@
 
   class Transformation extends Question {
     protected static $table_name = "transformations";
-    //protected static $attributes = ["id", "question", "question_start", "question_end", "answer", "parts_of_sentence"]; 
-     
+    // protected static $request_permitted_attributes = ["id", "question", "question_start", "question_end", "answer"]; 
+    // protected static $db_field_attributes = ["id", "question", "answer"]; 
+    
     // attributes
     public $id; 
     public $question; 
@@ -12,16 +13,21 @@
 
     // find_all - inherited 
 
-    public function new_transformation($request_params) {
+    public function new($request_params) {
       global $database; 
-      // pass the req params to the inherited create function 
-      // accept instance as response 
-      $this->create($request_params); 
+      $question = array();
+      
+      // question is composed of queston start and end
       $question_start    = trim($request_params["question_start"]); 
       $question_end      = trim($request_params["question_end"]); 
-      $question = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-      $this->question = $database->escape_value($question);
-      dump_variable($this);
+      $question["question"] = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+      
+      $params_merged = array_merge($question, $request_params);
+      // $this->question = $database->escape_value($question);
+
+      $sanitized_params = $this->sanitized_attributes($params_merged); 
+      return $sanitized_params;
+      // dump_variable($this);
        // if($transformation->save()) {
       //   echo "transformation was saved"; 
       // } else {
