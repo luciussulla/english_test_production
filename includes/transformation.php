@@ -23,13 +23,8 @@
       $params_merged = array_merge($question, $request_params);
 
       $sanitized_params = $this->sanitized_attributes($params_merged); 
+      // we can try to fill in the object with sanitized data here; 
       return $sanitized_params;
-      // dump_variable($this);
-       // if($transformation->save()) {
-      //   echo "transformation was saved"; 
-      // } else {
-      //   echo "transformation was not saved"; 
-      // }
     }
 
     // public function new_transformation($request_params) {

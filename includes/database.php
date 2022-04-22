@@ -61,43 +61,6 @@
     public function insert_id() {
       return mysqli_insert_id($this->connection); 
     }
-    
-    // INSTANTIATION AND INSTANCE OBJECTS
-
-    public function has_attribute($attribute) {
-      $class = get_class($this);
-      return in_array($attribute, $class::$attributes);
-    } 
-    
-    public function sanitized_attributes($request_params) {
-      global $database;
-      $obj_attributes = array();
-      foreach($request_params as $attr=>$value) {
-        if($this->has_attribute($attr)) {
-          $obj_attributes[$attr] = trim($database->escape_value($value)); 
-        }
-      }
-      return $obj_attributes; 
-    }
-    
-    public function save_sanitized($sanitized_attributes) {
-      // we need to have - static::attributes 
-      $keys   = array_keys($sanitized_attributes); 
-      $values = array_values($sanitized_attributes); 
-
-      $db_field_names = join(", ", static::$attributes);
-
-      $query = "INSERT INTO " . static::$table_name;
-      $query .= " ({$db_field_names}) VALUES ('"; 
-      $query .= join("', '", $values);   
-      $query .= "')"; 
-
-      if ($this->query($query)) {
-        return true; 
-      } else {
-        return false;
-      }  
-    }
   }
 
   $database = new MySQLDatabase(); 

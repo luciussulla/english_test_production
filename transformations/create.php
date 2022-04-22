@@ -9,12 +9,12 @@
 
 <?php 
   if(isset($_POST["submit"])) { // for POST request 
-
     $transformation   = new Transformation();
     $sanitized_params = $transformation->new($_POST); 
     if($transformation->save_sanitized($sanitized_params)) {
-      redirect_to("./new.php");
-      echo "Transformation saved";
+      echo $transformation->id; 
+      //redirect_to("./new.php");
+      echo "Transformation saved"; 
     } else {
       echo "Transformation has not been saved"; 
     }
