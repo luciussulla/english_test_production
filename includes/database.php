@@ -61,6 +61,7 @@
     public function insert_id() {
       return mysqli_insert_id($this->connection); 
     }
+    
     // INSTANTIATION AND INSTANCE OBJECTS
 
     public function has_attribute($attribute) {
@@ -78,23 +79,24 @@
       }
       return $obj_attributes; 
     }
-
-    // public function create($request_params) {
-    //   // we save in object instance an assoc array of legitimate attr ans their values;
-    //   foreach($this->sanitized_attributes($request_params) as $attr => $prop) {
-    //     $this->$attr = $prop;
-    //   }
-    //   return $this;
-    // }
     
-    public function save() {
+    public function save_sanitized($sanitized_attributes) {
       // we need to have - static::attributes 
+      $keys   = array_keys($sanitized_attributes); 
+      $values = array_values($sanitized_attributes); 
+
       $db_field_names = join(", ", static::$attributes);
-      // get the values from this for keys from static::attributes
-      foreach($this as $attr=>$value) {
-        dump_variable($value); 
-      }
-      // we need also array of value properties that can be joined into a string => array_keys
+
+      $query = "INSERT INTO " . static::$table_name;
+      $query .= " ({$db_field_names}) VALUES ('"; 
+      $query .= join("', '", $values);   
+      $query .= "')"; 
+
+      if ($this->query($query)) {
+        return true; 
+      } else {
+        return false;
+      }  
     }
   }
 

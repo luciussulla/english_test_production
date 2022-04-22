@@ -1,0 +1,6 @@
+
+On the create page we want to call save func on the new_transformation
+
+
+
+We now must create a function that saves the question to the db

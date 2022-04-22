@@ -9,10 +9,9 @@
     public $id; 
     public $question; 
     public $answer; 
-    public static $attributes = ["id", "question", "answer"];
+    public static $attributes = ["question", "answer"];
 
     // find_all - inherited 
-
     public function new($request_params) {
       global $database; 
       $question = array();
@@ -20,10 +19,8 @@
       // question is composed of queston start and end
       $question_start    = trim($request_params["question_start"]); 
       $question_end      = trim($request_params["question_end"]); 
-      $question["question"] = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-      
+      $question["question"] = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.      
       $params_merged = array_merge($question, $request_params);
-      // $this->question = $database->escape_value($question);
 
       $sanitized_params = $this->sanitized_attributes($params_merged); 
       return $sanitized_params;
