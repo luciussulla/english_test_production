@@ -19,6 +19,19 @@
       $result = !empty($result_array) ? array_shift($result_array) : false; 
       return $result;
     }
+
+    public static function instantiate($obj, $db_result) {
+      foreach($db_result as $key=>$value) {$obj->$key = $value;}
+      return $obj;
+    }
+
+    public static function find_obj_by_id($id) {
+      $class_name = get_called_class(); 
+      $obj = new $class_name; 
+      $db_result = self::find_by_id($id);
+      $instance = self::instantiate($obj, $db_result); 
+      return $instance;
+    }
     
     public static function find_by_sql($sql) {
       global $database; 
@@ -29,7 +42,6 @@
       }
       return $result_array; 
     }
-
 
     // INSTANTIATION AND INSTANCE OBJECTS
     public function has_attribute($attribute) {

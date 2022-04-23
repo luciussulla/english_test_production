@@ -27,6 +27,10 @@
       return $sanitized_params;
     }
 
+    public function show($id) {
+      return Transformation::find_obj_by_id($id);
+    }
+
     // public function new_transformation($request_params) {
     //   global $database; 
     //   // modify the $req_params to include answer and question and only then pass it on for initialization and sanitization 
