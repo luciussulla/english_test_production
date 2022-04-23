@@ -1,8 +1,4 @@
 
-We now must create a function that saves the question to the db;
-
-We must create a function that retrieves a transtormation; 
-
 Later we will have to create a function that retrieves exercise and then the associated transformations;
 
 retrieval must take place by returning an object with all the properties filled in;

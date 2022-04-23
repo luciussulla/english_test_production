@@ -158,6 +158,18 @@ body {
     padding: 20px; 
     box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
   }
+
+  .show_question_answer {
+    margin-bottom: 20px; 
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block; 
+    min-width: 200px; 
+    width: 400px;  
+    padding: 20px; 
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
+  }
+
     .correct {
       color: green; 
     }
@@ -186,9 +198,11 @@ body {
   line-height: 30px; 
   border-radius: 5px; 
   padding: 5px 7px; 
-  text-decoration: none;
   text-align: center;
   margin-top: 20px; 
+  outline: 0px;
+  border: none; 
+  text-decoration: none;
 }
 
 .link-button {

@@ -1,6 +1,6 @@
 <?php include('root.php') ?>
 <?php require_once('../includes/initialize.php'); ?>
-<?php include('helpers.php')?>
+<!-- <?php include('helpers.php')?> -->
 <?php include($root . 'layouts/header.php'); ?>
 <?php 
   // confirmed_logged_in($root);
@@ -28,7 +28,7 @@
     </p>
   </form>
   <br/>
-  <a class="button link-button" href="../../index.php">Back</a>
+  <a class="button link-button" href="../index.php">Back</a>
 
 </div>  
 <script src="javascript.js"></script>

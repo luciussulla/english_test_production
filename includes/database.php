@@ -23,7 +23,7 @@
         ); 
       // ); 
       } else {
-        echo "Db connection established"; 
+        // echo "Db connection established"; 
       }
     }
     
