@@ -13,6 +13,23 @@
       return $result_array; 
     }
 
+    public static function find_all_instances() {
+      // create the instance of a class
+      $class_name = get_called_class(); 
+      $empty_instance = new $class_name;
+      // find all array_results 
+      $res_array = static::find_all();
+      // create object to store instantiated objects 
+      $instance_array = array();
+      // instantiate indivudual objects 
+      foreach($res_array as $obj_array) {
+        $instance = self::instantiate($empty_instance, $obj_array);
+        $instance_array[] = $instance; 
+      }
+      // return array of instantiated objects 
+      return $instance_array;
+    }
+
     public static function find_by_id($id) {
       $sql = "SELECT * FROM ".static::$table_name." WHERE id={$id}"; 
       $result_array = static::find_by_sql($sql); 
@@ -20,22 +37,22 @@
       return $result;
     }
 
-    public static function instantiate($obj, $db_result) {
-      foreach($db_result as $key=>$value) {$obj->$key = $value;}
-      return $obj;
+    public static function instantiate($empty_instance, $db_result) {
+      foreach($db_result as $key=>$value) {$empty_instance->$key = $value;}
+      return $empty_instance;
     }
 
     public static function find_obj_by_id($id) {
       $class_name = get_called_class(); 
-      $obj = new $class_name; 
+      $empty_instance = new $class_name; 
       $db_result = self::find_by_id($id);
-      $instance = self::instantiate($obj, $db_result); 
+      $instance = self::instantiate($empty_instance, $db_result); 
       return $instance;
     }
     
     public static function find_by_sql($sql) {
       global $database; 
-      $result_set = $database->query($sql);
+      $result_set = $database->query($sql); 
       $result_array = array(); 
       while($row = $database->fetch_assoc($result_set)) {
         $result_array[] = $row; 
